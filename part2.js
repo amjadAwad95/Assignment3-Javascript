@@ -1,4 +1,5 @@
 // Part 2: Find the Student!
+/*
 document.getElementById("search-btn").addEventListener("click", (event) => {
     let studentName = document.getElementById("search-name").value;
     let searchStudent = students.filter((student) => student.name.includes(studentName));
@@ -36,3 +37,14 @@ function addDataToTbody(students) {
     tbody.appendChild(tr);
     return false;
 }
+*/
+
+document.getElementById("search-btn").addEventListener("click", (event) => {
+    let studentName = document.getElementById("search-name").value;
+    let searchStudent = students.filter((student) => student.name.includes(studentName));
+    searchStudent.sort((a, b) => a.section - b.section);
+    let tbodyHtml = "";
+    if (searchStudent.length == 0) tbodyHtml += "<tr><td colspan=2>No students were found</td></tr>";
+    else searchStudent.forEach(student => { tbodyHtml += `<tr><td>${student.section}</td><td>${student.name}</td></tr>` });
+    document.getElementsByTagName("tbody")[0].innerHTML = tbodyHtml;
+})
